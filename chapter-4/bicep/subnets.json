@@ -1,0 +1,16 @@
+{
+    "subnets": [
+        {
+          "name": "apimSubnet",
+          "properties": {
+            "addressPrefix": "10.0.1.0/24"
+          }
+        },
+        {
+          "name": "appSubnet",
+          "properties": {
+            "addressPrefix": "10.0.2.0/24"
+          }
+        }                      
+      ]
+}

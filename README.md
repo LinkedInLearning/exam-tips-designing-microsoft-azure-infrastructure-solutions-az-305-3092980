@@ -3,32 +3,22 @@ This is the repository for the LinkedIn Learning course Exam Tips: Designing Mic
 
 _See the readme file in the main branch for updated instructions and information._
 ## Instructions
-This repository has branches for each of the videos in the course. You can use the branch pop up menu in github to switch to a specific branch and take a look at the course at that stage, or you can add `/tree/BRANCH_NAME` to the URL to go to the branch you want to access.
+This repository does not have any branches. Download the entire repository and you get the demo environments and other setups to look at, all in their final state.
 
-## Branches
-The branches are structured to correspond to the videos in the course. The naming convention is `CHAPTER#_MOVIE#`. As an example, the branch named `02_03` corresponds to the second chapter and the third video in that chapter. 
-Some branches will have a beginning and an end state. These are marked with the letters `b` for "beginning" and `e` for "end". The `b` branch contains the code as it is at the beginning of the movie. The `e` branch contains the code as it is at the end of the movie. The `main` branch holds the final state of the code when in the course.
+Each folder top level folder corresponds to a chapter, with a folder underneath containing bicep files which build environments shown in the course videos.
 
-When switching from one exercise files branch to the next after making changes to the files, you may get a message like this:
-
-    error: Your local changes to the following files would be overwritten by checkout:        [files]
-    Please commit your changes or stash them before you switch branches.
-    Aborting
-
-To resolve this issue:
-	
-    Add changes to git using this command: git add .
-	Commit changes using this command: git commit -m "some message"
+The instructions to follow for each video are in the [tips-readme.md](tips-readme.md) file. This file has a section for each video in this course that had a demo environment or further tips through hands on practice.
 
 ## Installing
-1. To use these exercise files, you must have the following installed:
-	- [list of requirements for course]
-2. Clone this repository into your local machine using the terminal (Mac), CMD (Windows), or a GUI tool like SourceTree.
-3. [Course-specific instructions]
+These files are designed to be run in Azure Cloudshell. You do not require anything installed locally to use these files.  However, if you would like to study the files locally I recommend the following:
+
+1. Install [VS Code](https://code.visualstudio.com/)
+2. Add the following extensions to VS Code:
+   - [Azure Bicep Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)
+   - [Azure CLI Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azurecli)
 
 
 [0]: # (Replace these placeholder URLs with actual course URLs)
 
 [lil-course-url]: https://www.linkedin.com/learning/
 [lil-thumbnail-url]: http://
-
