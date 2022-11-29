@@ -17,7 +17,7 @@ The bicep files are designed to be run from bash in cloudshell
 
     Once that is complete, [add an availability test](https://learn.microsoft.com/en-us/azure/azure-monitor/app/availability-standard-tests)
 
-    For the demo I took the site down overnight by stopping the Azure Spring compute so that it wasn't all green.
+    For the demo I took the site down overnight so that it wasn't all green.
 
 2. Create two peered VMs
 
@@ -59,7 +59,7 @@ The bicep files are designed to be run from bash in cloudshell
     az deployment group create --name 'c1-kvault' --resource-group rg-chapter1 --template-file ./chapter-1/bicep/keyvault-rbac.bicep
     ```
 
-## Video 01_03 - Design Authentication and Authorization solutions
+## Video 01_03 - Design identities and access for applications
 
 1. Create the functionapp and storage MSI environment
 
@@ -69,7 +69,7 @@ The bicep files are designed to be run from bash in cloudshell
     git clone https://github.com/Azure-Samples/functions-storage-managed-identity.git
     ```
 
-    CD into the functions folder and run code . to open visual studio code
+    CD into the cloned fodler and run code . to open visual studio code
 
     Edit src\Functions.cs and change line 90 from 
 
@@ -85,7 +85,21 @@ The bicep files are designed to be run from bash in cloudshell
 
     This just increases the time the SAS works for, 1 minute is a little quick!
 
-    Edit \StorageMSIFunction.csproj and change line 11 from
+    Edit \StorageMSIFunction.csproj and change line 3 from
+
+    ```
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    ```
+
+    To
+
+    ```
+        <TargetFramework>netcoreapp6</TargetFramework>
+
+    ```
+    
+    
+    and change line 11 from
 
     ```
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.13" />
@@ -97,15 +111,15 @@ The bicep files are designed to be run from bash in cloudshell
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.1.3" />
     ```
 
-    and 
+    Edit terraform\provider.tf and change line 3 from
 
     ```
-    
+      required_version = "~> 1.0.0"
     ```
 
     To
     ```
-
+      required_version = "~> 1.3.2"
     ```
 
     Ensure that the resource group you are going to use does not exist, then cd into the terraform directory and run
@@ -125,10 +139,77 @@ The bicep files are designed to be run from bash in cloudshell
     You can now follow the demo
 
 
-## Video 01_04 - 
+## Video 01_04 - Design Governance
+
+1. Assign a policy that inherits a tag from a resource group when a resource is created
+
+2. Create a custom policy that denies creation of B series VMs and apply it to a resource group, test by trying to create a VM in the resource group
 
 
+### Video 01_04 Hints
 
+[Create and manage policies to enforce compliance](https://learn.microsoft.com/en-us/azure/governance/policy/tutorials/create-and-manage)
+
+## Video 02_01 - Recommend a data storage solution
+
+1. Create a Free tier Azure Cosmos DB with the SQL API
+
+2. Create a containter, explore the container settings and how RU's work
+
+3. Create a JSON document in the container
+
+4. Create a Standard storage account
+
+5. Create a file share in the standard storage account
+
+6. Create a folder in the file share and upload a file to the folder
+
+7. Look at the connect settings for the fileshare
+
+
+### Video 02_01 Hints
+
+[Create a container in Cosmos DB](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/how-to-create-container)
+
+[Create and use an Azure File Share](https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-portal?tabs=azure-portal)
+
+## Video 02_02 - Design a data storage solution for relational data
+
+1. Create a single database Azure SQL DB, with vCore purchasing model.
+
+    Investigate the purchasing models and their compute and storage options
+
+    Configure to use Azure AD for authentication.
+
+    Investigate the networking methods in the networking tab, including the TLS settings
+
+    Investigate Transparent Data Encryption (TDE) on the security tab
+
+    Choose Sample data source on the Additional Settings tab
+
+2. Connect to the database using SSMS or Azure Data Studio
+
+### Video 02_02 Hints
+
+[Create a single database - Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/single-database-create-quickstart?view=azuresql&tabs=azure-portal)
+
+[Connect and query an Azure SQL Database](https://learn.microsoft.com/en-us/sql/ssms/quickstarts/ssms-connect-query-azure-sql?source=recommendations&view=sql-server-ver16)
+
+## Video 02_03 - Design a data storage solution for non-relational data
+
+1. Create a standard storage account with default settings
+
+2. Create a blob container and change the default access tier on the container to cool
+
+3. Create a blob in the container, note the access tier. Now change it to hot.
+
+4. Create a legal hold access policy on the container, then clear the legal hold
+
+[Set the default access tier for a storage account](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-online-manage?tabs=azure-portal#set-the-default-access-tier-for-a-storage-account)
+
+[Set a blobs access tier](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-online-manage?tabs=azure-portal)
+
+[Configure or clear a legal hold](https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-policy-configure-container-scope?tabs=azure-portal#configure-or-clear-a-legal-hold)
 
 ## Video 03_01 - Design Business Continuity Solutions
 
@@ -363,5 +444,36 @@ The bicep files are designed to be run from bash in cloudshell
 
 # Video 04_05 and 04_06 Design network solutions
 
-Tutorial on peering
-https://learn.microsoft.com/en-us/azure/virtual-network/create-peering-different-subscriptions
+1. Create a VNet with 65,534 addresses and a single Subnet
+
+2. Create two application security group (ASG) to group web servers an admin servers
+
+3. Create an network security group
+
+4. Add security rules to allow ports 80 and 443 for your web servers ASG
+
+5. Add security rules to allow ports 339 for your admin servers ASG
+
+6. Assign the NSG to the Subnet
+
+7. Create two VMs one called webvm and one called adminvm, ensure the subnet is the one you created in step 1
+
+8. Associate the ASGs create in Step 2 to their respective VMs
+
+9. Test the filtering works
+
+10. Create a second VNet
+
+11. Peer the two VNets
+
+12. Follow this tutorial to explore Azure Firewall
+
+    [Deploy and configure Azure Firewall](https://learn.microsoft.com/en-us/azure/firewall/tutorial-firewall-deploy-portal)
+
+
+
+## Video 04_05 & 04_06 Hints
+
+[Filter network traffic](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-filter-network-traffic)
+
+[Vnet Peering Tutorial](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-connect-virtual-networks-portal)
