@@ -1,6 +1,14 @@
 # Exam Tips: Designing Microsoft Azure Infrastructure Solutions (AZ-305)
 This is the repository for the LinkedIn Learning course Exam Tips: Designing Microsoft Azure Infrastructure Solutions (AZ-305). The full course is available from [LinkedIn Learning][lil-course-url].
 
+![Exam Tips: Designing Microsoft Azure Infrastructure Solutions (AZ-305)][lil-thumbnail-url] 
+
+The Azure Solutions Architect Expert certification is designed to measure a candidate's ability to design a cloud and hybrid infrastructure on Azure. This includes running compute, network, storage, monitoring, and security solutions. To earn this certification, you must first earn your Azure Administrator Associate certification, and then pass the AZ-305 exam: Designing Microsoft Azure Infrastructure Solutions
+ 
+
+
+In this course, Microsoft Certified Solution Architect Nicole Stevens provides a primer for those interested in taking the exam or who need a refresher before sitting for the exam. She gives an overview of this certification and highlights the four main functional groups of the AZ-305 exam. If you’re interested in gaining your Azure Solutions Architect Expert certification, join Nicole in this course to get started.
+
 _See the readme file in the main branch for updated instructions and information._
 ## Instructions
 This repository does not have any branches. Download the entire repository and you get the demo environments and other setups to look at, all in their final state.
@@ -18,7 +26,12 @@ These files are designed to be run in Azure Cloudshell. You do not require anyth
    - [Azure CLI Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azurecli)
 
 
-[0]: # (Replace these placeholder URLs with actual course URLs)
+### Instructor
 
-[lil-course-url]: https://www.linkedin.com/learning/
-[lil-thumbnail-url]: http://
+Nicole Stevens 
+                                                    
+
+Check out my other courses on [LinkedIn Learning](https://www.linkedin.com/learning/instructors/nicole-stevens).
+
+[lil-course-url]: https://www.linkedin.com/learning/exam-tips-designing-microsoft-azure-infrastructure-solutions-az-305?dApp=59033956
+[lil-thumbnail-url]: https://media.licdn.com/dms/image/C560DAQEJB7BxZVHggw/learning-public-crop_675_1200/0/1674591580440?e=2147483647&v=beta&t=7Dmkn7bTEScn9jovGiXv6sOF_O8aUUJYNlNufIlg1Y0
